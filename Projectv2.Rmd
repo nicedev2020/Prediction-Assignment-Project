@@ -179,10 +179,10 @@ plot(conf_matrix_decision_tree$table, col = conf_matrix_decision_tree$byClass,
 
 ```{r}
 set.seed(1813)
-#ctrl_GBM <- trainControl(method = "repeatedcv", number = 5, repeats = 2)
-#fit_GBM  <- train(classe ~ ., data = train_set, method = "gbm",
-#                  trControl = ctrl_GBM, verbose = FALSE)
-#fit_GBM$finalModel
+ctrl_GBM <- trainControl(method = "repeatedcv", number = 5, repeats = 2)
+fit_GBM  <- train(classe ~ ., data = train_set, method = "gbm",
+                  trControl = ctrl_GBM, verbose = FALSE)
+fit_GBM$finalModel
 ```
 
 ```{r}
@@ -194,9 +194,9 @@ set.seed(1813)
 Predictions of the GBM on test_set.
 
 ```{r}
-#predict_GBM <- predict(fit_GBM, newdata = test_set)
-#conf_matrix_GBM <- confusionMatrix(predict_GBM, test_set$classe)
-#conf_matrix_GBM
+predict_GBM <- predict(fit_GBM, newdata = test_set)
+conf_matrix_GBM <- confusionMatrix(table(predict_GBM, test_set$classe))
+conf_matrix_GBM
 ```
 
 The predictive accuracy of the GBM is relatively high at 98.45 %.
